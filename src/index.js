@@ -57,6 +57,14 @@ app.use(
 app.use(express.json());
 app.use(morgan("dev"));
 
+app.get("/health", (req, res) => {
+  res.json({
+    status: "OK",
+    environment: config.server.env || "staging",
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/goals", goalRoutes);
