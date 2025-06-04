@@ -18,6 +18,8 @@ import learnerProfileRoutes from "./routes/learnerProfiles.js";
 import { pathwayRoutes } from "./routes/pathways.js";
 import { quizRoutes } from "./routes/quiz.js";
 
+import { config } from "./config/env.js";
+
 // Get the directory name of the current module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -57,10 +59,11 @@ app.use(
 app.use(express.json());
 app.use(morgan("dev"));
 
+// Health check route
 app.get("/health", (req, res) => {
   res.json({
     status: "OK",
-    environment: config.server.env || "staging",
+    environment: process.env.NODE_ENV || "staging",
     timestamp: new Date().toISOString(),
   });
 });
