@@ -39,11 +39,6 @@ if (missingEnvVars.length > 0) {
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-import cors from "cors";
-
-// ... autres imports ...
-
 // Configuration CORS unique et propre
 app.use(
   cors({
