@@ -41,15 +41,14 @@ if (missingEnvVars.length > 0) {
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Configuration CORS unique et propre
 app.use(
   cors({
     origin: [
       "http://localhost:5173",
       "http://localhost:4173",
-      "https://backend-production-571a.up.railway.app",
-      process.env.FRONTEND_URL, // On ajoutera ça dans les variables
-    ].filter(Boolean),
+      "https://ucad-frontend-staging.vercel.app",
+      "https://ucad-frontend-staging-*.vercel.app", // Pour les previews
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
